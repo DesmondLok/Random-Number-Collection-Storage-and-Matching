@@ -5,20 +5,16 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<h1 class="text-center text-white mt-3">Random Number Collection, Storage and Matching</h1>
+<h1 class="text-center text-white mt-3 mb-3">Random Number Collection, Storage and Matching</h1>
 
-<div class="container-fluid p-0 m-0 h-100 row " >
+<div class="container-fluid p-0 m-0 h-100 row align-items-center" >
     
 
     <div class="col-sm-6" >
 
-        <div class="p-3 m-3 card borderNone backgroundCard " >
-            <fieldset class="p-3 mb-3 borderWhite">
-                <legend class="text-white text-center legendHeader ps-3 pe-3" >Live Number</legend>
-                <h1 id="runningNum" class="text-center text-white">0000</h1>
-            </fieldset>
-            <button class="btn btn-primary w-100 text-center" onclick="CollectNumber()">Collect Number</button>
-        </div>
+        <img src="img.png" alt="image" class="img-fluid mx-auto d-block" style="height:200px;">
+
+       
 
         <div class="p-3 m-3 card backgroundCard" >
             <fieldset class="p-3 borderWhite">
@@ -40,6 +36,15 @@
     </div>
    
     <div class="col-sm-6" >
+
+        <div class="p-3 m-3 card borderNone backgroundCard " >
+            <fieldset class="p-3 mb-3 borderWhite">
+                <legend class="text-white text-center legendHeader ps-3 pe-3" >Live Number</legend>
+                <h1 id="runningNum" class="text-center text-white">0000</h1>
+            </fieldset>
+            <button class="btn btn-primary w-100 text-center" onclick="CollectNumber()">Collect Number</button>
+        </div>
+    
         <div class="p-3 m-3 card borderNone backgroundCard ">
             <fieldset class="p-3 borderWhite">
                 <legend class="text-white text-center legendHeader ps-3 pe-3" >Result</legend>
