@@ -31,10 +31,6 @@
                             Please fill out this field with a 5 digit number.
                         </div>
                     </div>
-
-
-                    <div id="result" class="text-white">
-                    </div>
                     
                 </form>
             </fieldset>
@@ -46,14 +42,19 @@
     <div class="col-sm-6" >
         <div class="p-3 m-3 card borderNone backgroundCard ">
             <fieldset class="p-3 borderWhite">
-                <legend class="text-white text-center legendHeader ps-3 pe-3" >Past Number</legend>
+                <legend class="text-white text-center legendHeader ps-3 pe-3" >Result</legend>
+                    <div id="result" class="text-white">
+                        <p>Exact Matches: </p>
+                        <p>Continuous Matches: </p>
+                        <p>Permutations Match: </p>
+                    </div>
             </fieldset>
         </div>
     </div>
 </div>
 
 
-<div>
+<div class="d-none">
     <div id="collectedNUmber">0</div>
 </div>
 
@@ -78,52 +79,59 @@
     function checkMatching() {
         inputNum = document.getElementById("inputNumber").value;
         collectNum = document.getElementById("collectedNUmber").innerHTML;
+
+        if(inputNum != ""){
         
-        console.log (inputNum);
-        console.log (collectNum);
+            console.log (inputNum);
+            console.log (collectNum);
 
-        let match = 0;
-        let continuous = 0;
-        let maxContinuous = 0;
-        let permutation = 0;
+            let match = 0;
+            let continuous = 0;
+            let maxContinuous = 0;
+            let permutation = 0;
 
-                //matched continuous digits
-        for (i=0; i < inputNum.length; i++){
-            if (inputNum[i] == collectNum[i]){
-                continuous++;
-                if ( continuous > maxContinuous ){
-                    maxContinuous = continuous;
-                }
-            }else{
-                continuous = 0;
-            }
-        }
-
-        //matched digits
-        for (let i = 0; i < inputNum.length; i++){
-            for (let ii = 0; ii< collectNum.length; ii++){
-                if (inputNum[i] == collectNum[ii]){
-                    collectNum = collectNum.slice(0,ii) + collectNum.slice(ii+1);
-                    console.log(collectNum);
-                    match++;
-                    break;
+                    //matched continuous digits
+            for (i=0; i < inputNum.length; i++){
+                if (inputNum[i] == collectNum[i]){
+                    continuous++;
+                    if ( continuous > maxContinuous ){
+                        maxContinuous = continuous;
+                    }
+                }else{
+                    continuous = 0;
                 }
             }
+
+            //matched digits
+            for (let i = 0; i < inputNum.length; i++){
+                for (let ii = 0; ii< collectNum.length; ii++){
+                    if (inputNum[i] == collectNum[ii]){
+                        collectNum = collectNum.slice(0,ii) + collectNum.slice(ii+1);
+                        console.log(collectNum);
+                        match++;
+                        break;
+                    }
+                }
+            }
+
+            if(match == 5){
+                permutation = 1;
+            }
+
+            document.getElementById('result').innerHTML = `
+                <p>Exact Matches: ${match}</p>
+                <p>Continuous Matches: ${maxContinuous}</p>
+                <p>Permutations Match: ${permutation}</p>
+            `;
+
+            console.log ("total = ", match);
+            console.log ("continuous = ", maxContinuous);
+            console.log ("permu = ", permutation);
+        }else{
+            document.getElementById('result').innerHTML = `
+                <p class="text-center">Input field is empty. Please fill out the input field with a 5 digit number.<p>
+            `;
         }
-
-        if(match == 5){
-            permutation = 1;
-        }
-
-        document.getElementById('result').innerHTML = `
-            <p>Exact Matches: ${match}</p>
-            <p>Continuous Matches: ${maxContinuous}</p>
-            <p>Permutations Match: ${permutation}</p>
-        `;
-
-        console.log ("total = ", match);
-        console.log ("continuous = ", maxContinuous);
-        console.log ("permu = ", permutation);
     }
 
     function CollectNumber() {
@@ -134,7 +142,7 @@
             x = x.slice(-1)
             collectNum = collectNum + x.toString();
             document.getElementById("collectedNUmber").innerHTML = Number.parseInt(collectNum);
-        }, 600);
+        }, 60000);
 
         const Interval3 = setInterval(()=>{
             clearInterval(Interval2);
@@ -142,7 +150,7 @@
             saveNum();
             
             clearInterval(Interval3);
-        }, 3000);
+        }, 300000);
 
         
         
