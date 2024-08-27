@@ -1,0 +1,21 @@
+.legendHeader{
+    float: none;
+    width: auto;
+}
+
+.borderNone{
+    border: none !important;
+}
+
+.backgroundCard{
+    background-color: #c7494d;
+}
+
+.backgroundRed{
+    background-color: #ba1b20;
+}
+
+.borderWhite{
+    border: 2px solid white;
+    border-radius: 0.5rem;
+}
